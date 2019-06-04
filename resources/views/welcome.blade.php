@@ -8,7 +8,9 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
         <!-- Styles -->
         <style>
             html, body {
@@ -81,16 +83,38 @@
                             Books
                         </div>
             
-                        <div class="links">
-                            @foreach ($books as $book)
-                                <a href="{{url('books/' . $book->id)}}">{{$book->title}}</a>
-                                <a href="{{url('delete/' . $book->id)}}">Delete</button>
-                                <a href="{{url('update/' . $book->id)}}">Update</button>     
-                                <br>
-                            @endforeach
+                        <div class="container">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($books as $book)
+                                        <tr>
+                                            <th>
+                                                <a href="{{url('books/' . $book->id)}}">{{$book->title}}</a>
+                                            </th>
+                                            <th>
+                                                <a href="{{url('books/' . $book->id)}}">{{$book->author}}</a>
+                                            </th>
+                                            <th>
+                                                <a class='btn btn-primary' href="{{url('update/' . $book->id)}}">Update</a>     
+                                            </th>
+                                            <th>
+                                                <a class='btn btn-danger' href="{{url('delete/' . $book->id)}}">Delete</a>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                         <br>
-                        <a href="{{url('submit')}}">New Book </a>
+                        <a class='btn btn-success' href="{{url('submit')}}">New Book </a>
                     </div>
                 </div>
     </body>
